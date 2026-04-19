@@ -1,24 +1,22 @@
-# Coinbot and Airfarm Render Configuration
-
-blueprints:
-  coinbot:
-    type: service
+services:
+  - type: web
     name: coinbot
-    env: python
+    runtime: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python app.py"
-    integrations:
-      - github:
-          repository: charliescustomsandrepair-star/investment-tools
+    repo: https://github.com/charliescustomsandrepair-star/investment-tools
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: HEADLESS
+        value: "true"
 
-  airfarm:
-    type: service
+  - type: web
     name: airfarm
-    env: python
+    runtime: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python airfarm.py"
-    integrations:
-      - github:
-          repository: charliescustomsandrepair-star/investment-tools
+    repo: https://github.com/charliescustomsandrepair-star/investment-tools
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: HEADLESS
+        value: "true"
